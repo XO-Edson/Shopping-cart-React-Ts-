@@ -1,18 +1,18 @@
 import { ReactNode, createContext, useState } from "react";
 
-type CartItem = {
+export type CartItem = {
   id: number;
   quantity: number;
 };
 
-type CartContext = {
+export type CartContext = {
   cartQuantity: (id: number) => number;
   addToCart: (id: number) => void;
   removeCart: (id: number) => void;
   deleteCart: (id: number) => void;
 };
 
-export const CartContext = createContext({} as CartContext);
+export const shoppingCartContext = createContext({} as CartContext);
 
 const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
@@ -58,12 +58,12 @@ type ChildrenProps = {
 };
 export const CartContextProvider = ({ children }: ChildrenProps) => {
   return (
-    <CartContext.Provider
+    <shoppingCartContext.Provider
       value={{ cartQuantity, addToCart, removeCart, deleteCart }}
     >
       {children}
-    </CartContext.Provider>
+    </shoppingCartContext.Provider>
   );
 };
 
-export default CartContext;
+export default shoppingCartContext;
