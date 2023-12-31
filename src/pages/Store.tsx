@@ -3,6 +3,7 @@ import useProduct from "../hooks/useProducts";
 
 const Store = () => {
   const { productsState } = useProduct();
+  console.log(productsState);
 
   return (
     <div>
