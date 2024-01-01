@@ -6,7 +6,7 @@ import { Header } from "./components/Header";
 
 function App() {
   return (
-    <>
+    <section>
       <Header />
 
       <Routes>
@@ -15,7 +15,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="*" element={<Home />} />
       </Routes>
-    </>
+    </section>
   );
 }
 

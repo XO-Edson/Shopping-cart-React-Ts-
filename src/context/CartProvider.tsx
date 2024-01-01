@@ -11,6 +11,9 @@ export type CartContext = {
   removeCart: (id: number) => void;
   deleteCart: (id: number) => void;
   totalCartQuantity: number;
+  showCartfn: () => void;
+  showCart: boolean;
+  cartItems: CartItem[];
 };
 
 export const shoppingCartContext = createContext({} as CartContext);
@@ -20,6 +23,8 @@ type ChildrenProps = {
 };
 export const CartContextProvider = ({ children }: ChildrenProps) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  const [showCart, setShowCart] = useState(false);
 
   const totalCartQuantity = cartItems.reduce(
     (acc, item) => acc + item.quantity,
@@ -66,6 +71,10 @@ export const CartContextProvider = ({ children }: ChildrenProps) => {
     });
   }
 
+  function showCartfn() {
+    return setShowCart((prev) => !prev);
+  }
+
   return (
     <shoppingCartContext.Provider
       value={{
@@ -74,6 +83,9 @@ export const CartContextProvider = ({ children }: ChildrenProps) => {
         removeCart,
         deleteCart,
         totalCartQuantity,
+        showCartfn,
+        showCart,
+        cartItems,
       }}
     >
       {children}

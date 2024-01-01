@@ -1,23 +1,24 @@
 import { Link } from "react-router-dom";
 import useCart from "../hooks/useCart";
+import Sidebar from "./Sidebar";
 
 export const Header = () => {
-  const { totalCartQuantity } = useCart();
+  const { totalCartQuantity, showCartfn } = useCart();
 
   return (
     <header>
       <ul>
-        <Link to="/">
-          <li>Home</li>
-        </Link>
-        <Link to="/store">
-          <li>Store</li>
-        </Link>
-        <Link to={"/about"}>
-          <li>About</li>
-        </Link>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/store">Store</Link>
+        </li>
+        <li>
+          <Link to={"/about"}>About</Link>
+        </li>
       </ul>
-      <button className="cart-total">
+      <button className="cart-total" onClick={showCartfn}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 576 512"
@@ -27,6 +28,8 @@ export const Header = () => {
         </svg>
         <div className="show-quantity">{totalCartQuantity}</div>
       </button>
+
+      <Sidebar />
     </header>
   );
 };
