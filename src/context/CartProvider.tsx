@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 
 export type CartItem = {
   id: number;
@@ -11,20 +11,30 @@ export type CartContext = {
   removeCart: (id: number) => void;
   deleteCart: (id: number) => void;
   totalCartQuantity: number;
-  showCartfn: () => void;
+  handleContainerClick: (e: any) => void;
   showCart: boolean;
   cartItems: CartItem[];
+  showCartfn: () => void;
 };
-
-export const shoppingCartContext = createContext({} as CartContext);
 
 type ChildrenProps = {
   children: ReactNode;
 };
+
+export const shoppingCartContext = createContext({} as CartContext);
+
 export const CartContextProvider = ({ children }: ChildrenProps) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   const [showCart, setShowCart] = useState(false);
+
+  useEffect(() => {
+    if (showCart) {
+      document.body.classList.add("overflow");
+    } else {
+      document.body.classList.remove("overflow");
+    }
+  }, [showCart]);
 
   const totalCartQuantity = cartItems.reduce(
     (acc, item) => acc + item.quantity,
@@ -75,6 +85,12 @@ export const CartContextProvider = ({ children }: ChildrenProps) => {
     return setShowCart((prev) => !prev);
   }
 
+  const handleContainerClick = (e: any) => {
+    if (e.target.classList.contains("sidebar-container")) {
+      showCartfn();
+    }
+  };
+
   return (
     <shoppingCartContext.Provider
       value={{
@@ -83,9 +99,10 @@ export const CartContextProvider = ({ children }: ChildrenProps) => {
         removeCart,
         deleteCart,
         totalCartQuantity,
-        showCartfn,
+        handleContainerClick,
         showCart,
         cartItems,
+        showCartfn,
       }}
     >
       {children}
