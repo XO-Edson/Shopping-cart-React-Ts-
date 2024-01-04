@@ -13,9 +13,9 @@ const Cart = ({ item }: CartProps) => {
       {productsData.map((product) => {
         if (product.id === id) {
           return (
-            <div key={product.id}>
-              <h1>{product.name}</h1>
+            <div key={product.id} className="cart">
               <img src={product.imgUrl} alt={product.name} />
+              <h1>{product.name}</h1>
               <p>{product.price}</p>
             </div>
           );

@@ -115,3 +115,12 @@ button {
 .overflow {
   overflow: hidden;
 }
+
+.cart {
+  display: flex;
+}
+
+.cart img {
+  width: 150px;
+  height: 100px;
+}
