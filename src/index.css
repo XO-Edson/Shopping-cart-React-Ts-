@@ -42,6 +42,7 @@ img {
   object-fit: cover;
   margin-top: 1rem;
 }
+
 .item-info {
   display: flex;
   justify-content: space-between;
@@ -118,9 +119,24 @@ button {
 
 .cart {
   display: flex;
+  align-items: center;
+  padding: 1rem;
 }
 
-.cart img {
+.cartItemImg {
   width: 150px;
   height: 100px;
+  margin: 0 0.5rem 0 0;
+}
+
+.cartItemImg img {
+  height: 100px;
+  width: 150px;
+  object-fit: cover;
+}
+
+.cart-details {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }

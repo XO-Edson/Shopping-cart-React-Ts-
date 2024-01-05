@@ -14,9 +14,20 @@ const Cart = ({ item }: CartProps) => {
         if (product.id === id) {
           return (
             <div key={product.id} className="cart">
-              <img src={product.imgUrl} alt={product.name} />
-              <h1>{product.name}</h1>
-              <p>{product.price}</p>
+              <div className="cartItemImg">
+                <img src={product.imgUrl} alt={product.name} />
+              </div>
+
+              <div className="cart-details">
+                <div>
+                  <p>{product.name}</p>
+                  <p>{product.price}</p>
+                </div>
+
+                <div className="total">
+                  <h3>${product.price * item.quantity}</h3>
+                </div>
+              </div>
             </div>
           );
         }
